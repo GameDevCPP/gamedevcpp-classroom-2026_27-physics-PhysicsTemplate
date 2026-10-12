@@ -8,7 +8,7 @@ FetchContent_Declare(SFML
 FetchContent_MakeAvailable(SFML)
 
 
-# B2D - Box2D phyics library
+# B2D - Box2D physics library
 add_subdirectory("lib/b2d/Box2D")
 include_directories("lib/b2d/Box2D/")
 set(B2D_INCS "lib/b2d/Box2D/")

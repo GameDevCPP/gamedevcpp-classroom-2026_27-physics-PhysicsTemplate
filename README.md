@@ -4,9 +4,11 @@
 
 We will be using the [Box2D](http://box2d.org/) physics engine from here on. B2D is relatively robust and well used. Building a 2d physics engine yourself isn't an impossible task, but we don't have time to cover it in this module, so we will be using something that already exists.
 
-When with picking software off the web, chances are it needs some tweaks. B2D doesn't have a well-built CMake Script, but thanks to the process of open-source software, [Sam fixed it](https://github.com/dooglz/Box2D/commit/e8d2cafa7f1300f5916a2e22f277d998a739e835).
+When it comes to picking software off the web, chances are it needs some tweaks. B2D doesn't have a well-built CMake Script, but thanks to the process of open-source software, [Sam fixed it](https://github.com/dooglz/Box2D/commit/e8d2cafa7f1300f5916a2e22f277d998a739e835).
 
 The fix is still pending in a pull request to the main repo so for now we will use my fork.
+
+![Box2D physics demo](assets/physics_demo.gif)
 
 ### Add the Submodule
 
@@ -21,12 +23,12 @@ git submodule update
 
 ### Amend the CMakeLists
 
-Adding B2D to our build process is pretty easy:
+Adding B2D to our build process is pretty easy -- in fact, CMakeLists.txt in this template already has it wired in, shown here for reference:
 
 ```cmake
-# B2D - Box2D phyics library
+# B2D - Box2D physics library
 add_subdirectory("lib/b2d/Box2D")
-#include_directories("lib/b2d/Box2D/")
+include_directories("lib/b2d/Box2D/")
 set(B2D_INCS "lib/b2d/Box2D/")
 link_directories("${CMAKE_BINARY_DIR}/lib/sfml/lib")
 ```
@@ -122,8 +124,7 @@ void init() {
 
 Done, we've just created a world, in 3 lines.
 
-{:class="important"}
-You will need to remeber to add the correct include statements, or the above and below code will throw errors!
+You will need to remember to add the correct include statements, or the above and below code will throw errors!
 
 ### Creating physics Bodies
 
@@ -238,7 +239,6 @@ void Update() {
 }
 ```
 
-{:class="important"}
 You now need to ensure that you *render* these boxes so you can test that they do, indeed, move!
 
 ### Walls
@@ -279,8 +279,7 @@ void init() {
 A hint: we've defined the vectors in that way so we can store both the central point and size in pairs, hence the slightly different for loop.
 Hint 2: the origin is a bit more tricky to get right, but remember you can divide a vector by a number if you need to!
 
-{:class="important"}
-Don't move on until you have some bouncin' boxes like the gif at the top!
+Don't move on until you have some bouncin' boxes like the gif below!
 
 
 
